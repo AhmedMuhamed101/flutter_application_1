@@ -1,8 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:team/menu_screen.dart';
-import 'package:team/select_train_for_map_Screen.dart';
-import 'package:team/train_location_screen.dart';
+import 'package:get/get.dart';
+import 'package:team/controller/select_train_controller.dart';
+import 'package:team/view/menu_screen.dart';
+import 'package:team/view/select_train_for_map_Screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -270,11 +271,8 @@ class _HomeScreenState extends State<HomeScreen> {
                  Center(
                    child: InkWell(
                     onTap:() {
-                   Navigator.push(
-                context, 
-                MaterialPageRoute(builder: (context)=>const SelectTrainForMapScreen()),
-                              );
-                }, 
+                      Get.to(SelectTrainForMapScreen());
+                 }, 
                      child: Column(
                        children: [
                           Container(

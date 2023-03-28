@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:team/train_location_screen.dart';
+import 'package:get/get.dart';
+import 'package:team/controller/select_train_controller.dart';
+import 'package:team/view/train_location_screen.dart';
 
 class SelectTrainForMapScreen extends StatefulWidget {
   const SelectTrainForMapScreen({super.key});
@@ -27,8 +29,9 @@ var selectTrainNumber;
          child: Center(
            child: Stack(
              children:[ 
-              
-              Positioned(
+              GetX<SelectTrainController>(
+                init: SelectTrainController(),
+                builder: (controller) =>     Positioned(
                 top:200.0 ,
                 child:Container(
                 height:610.0,
@@ -62,7 +65,7 @@ var selectTrainNumber;
                 ),
                 child: DropdownButton(
                 hint: const Text("Select Your Train Name"),
-                items: ["Russ","VIP" , "Asban", "Sleep"]
+                items: controller.dropDownButtonItem
                 .map((trainName) => DropdownMenuItem(child: Text(trainName),
                 value: trainName,
                 )).toList(),
@@ -100,7 +103,7 @@ var selectTrainNumber;
                 ),
                 child: DropdownButton(
                 hint: const Text("Select Your Train Number"),
-                items: ["1080","604" , "520", "106"]
+                items: controller.dropDownButtonNumber
                 .map((train) => DropdownMenuItem(child: Text(train),
                 value: train,
                 )).toList(),
@@ -134,12 +137,10 @@ var selectTrainNumber;
                 offset: Offset(2,4),
                )]
           ),
-          child: TextButton(onPressed: (){
-             Navigator.push(
-                context, 
-                MaterialPageRoute(builder: (context)=>const TrainLocation()),
-                              );
-          },
+          child: TextButton(
+            onPressed: (){
+             Get.to(TrainLocation());
+                       },
           
            child: const Text('Search',
            style: TextStyle(fontSize: 28.0 , color: Color(0xff42b6f0),),
@@ -148,7 +149,8 @@ var selectTrainNumber;
            ],
                 ),
                 )),
-         
+        )
+          
          ]  )
       ),
        ),
