@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:team/core/constant/app_string.dart';
+import 'package:team/core/constant/link_photo.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -10,13 +12,13 @@ class MenuScreen extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text("SaSa"),
-              accountEmail: Text("SaSa.com"),
+            accountName: const Text(AppString.nameProfile),
+              accountEmail: const Text(AppString.email),
               currentAccountPicture: CircleAvatar(
                 /// ClipOval make image Circular
                 child: ClipOval(
                   child: Image.asset(
-                    "images/face.jpg",
+                    AppLinkImage.profileImage,
                     width: 90,
                     height: 90,
                     fit:BoxFit.cover ,
@@ -25,7 +27,8 @@ class MenuScreen extends StatelessWidget {
               ),
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                image: AssetImage("images/default.jpg"),
+                image: AssetImage(
+                    AppLinkImage.backgroundImage),
             fit:BoxFit.fill
             ),
             
@@ -33,35 +36,35 @@ class MenuScreen extends StatelessWidget {
             ),
        ListTile(
           leading: const Icon(Icons.favorite),
-          title: const Text("Favorite"),
+          title: const Text(AppString.favorite),
           onTap: (() {}),
         ),
        ListTile(
           leading: const Icon(Icons.scoreboard),
-          title: const Text("Score"),
+          title: const Text(AppString.score),
           onTap: (() {}),
         ),
        const Divider(),
        ListTile(
           leading: const Icon(Icons.people),
-          title: const Text("Friends"),
+          title: const Text(AppString.friends),
           onTap: (() {}),
         ),
        ListTile(
           leading: const Icon(Icons.share),
-          title: const Text("Share"),
+          title: const Text(AppString.share),
           onTap: (() {}),
         ),
         
        const Divider(),
        ListTile(
           leading: const Icon(Icons.settings),
-          title: const Text("Setting"),
+          title: const Text(AppString.setting),
           onTap: (() {}),
         ),
        ListTile(
           leading: const Icon(Icons.description),
-          title: const Text("Policies"),
+          title: const Text(AppString.policies),
           onTap: (() {}),
         ),
       
