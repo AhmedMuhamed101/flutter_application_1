@@ -27,11 +27,11 @@ class NavigationBarWidget extends StatelessWidget{
       builder:(controller) => CurvedNavigationBar(
         //  key: _bottomNavigationKey,
           items: items,
-          index: _page,
+          index:_page,
           onTap: (index) {
-           _page =  controller.ontap(index);
+             controller.selectIndex = index;
+             controller.getselectindex(index: index );
 
-          //  getselectindex(index: _page);
 
           },
           backgroundColor: const Color.fromARGB(255, 124, 187, 238),
@@ -42,20 +42,3 @@ class NavigationBarWidget extends StatelessWidget{
   
   
 }
-Widget getselectindex ({required int index})
-  {
-    Widget widget;
-    switch (index) {
-      case 0:
-        widget = const TrainLocation();
-        break;
-        case 1:
-        widget = const MenuScreen();
-        break;
-      default:
-        widget = const TrainLocation();
-        break;
-    }
-    return widget;
-
-  }
