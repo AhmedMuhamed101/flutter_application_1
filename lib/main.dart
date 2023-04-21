@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:team/view/screens/home_screen.dart';
 import 'package:team/view/screens/select_train_for_map_Screen.dart';
 import 'package:team/view/screens/train_location_screen.dart';
+import 'package:team/view/widget/navigation_bar_widget.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const HomePageScreen(),
       getPages: [
       GetPage(name: "/TrainLocationScreen", page:() =>  TrainLocation()),
       GetPage(name: "/SelectTrainForMapScreen", page:() =>  SelectTrainForMapScreen()),

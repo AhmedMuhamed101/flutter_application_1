@@ -1,32 +1,26 @@
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:team/view/screens/home_screen.dart';
 import 'package:team/view/screens/menu_screen.dart';
-import 'package:team/view/screens/train_location_screen.dart';
+import 'package:team/view/screens/select_train_for_map_Screen.dart';
 
-class NavigationBarControlle extends GetxController{
+class NavigationBarControlle extends GetxController {
   int? selectIndex = 1;
 
+  final items = <Widget>[
+    const Icon(Icons.games_outlined, size: 35.0),
+    const Icon(Icons.watch_later_outlined, size: 35.0),
+    const Icon(Icons.alarm, size: 35.0)
+  ];
 
-   ontap (index){
-    selectIndex= index;
+  final screen = [
+    SelectTrainForMapScreen(),
+    HomeScreen(),
+    MenuScreen(),
+  ];
+
+  ontap(index) {
+    selectIndex = index;
     update();
-  }
-  
-  Widget getselectindex ({required int index})
-  {
-    Widget widget;
-    switch (index) {
-      case 0:
-        widget = const TrainLocation();
-        break;
-        case 1:
-        widget = const MenuScreen();
-        break;
-      default:
-        widget = const TrainLocation();
-        break;
-      
-    }
-    return widget;
   }
 }
