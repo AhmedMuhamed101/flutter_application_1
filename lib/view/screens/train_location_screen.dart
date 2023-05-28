@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 // import 'package:geocoding/geocoding.dart';
 // import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:team/controller/train_location_controlle.dart';
 
 class TrainLocation extends StatefulWidget {
   const TrainLocation({super.key});
@@ -19,82 +21,22 @@ class TrainLocation extends StatefulWidget {
 
 class _TrainLocationState extends State<TrainLocation> {
     
-  late Position currentLocation;
-  late StreamSubscription<Position> postionStream;
-   var lat ; 
-   var long ; 
-  late CameraPosition _kGooglePlex ; 
-  
-  Future getPermetion() async {
-    bool servies;
-    LocationPermission per;
-    servies = await Geolocator.isLocationServiceEnabled();
-    if(servies == false){
-      print("disable");
-      }
-per  = await Geolocator.checkPermission();
-if( per ==LocationPermission.denied){
-    per = await Geolocator.requestPermission();
-    
-  }
-    print(per);
-  }
-    
-   Future<void> getlangAndlat() async{
-    currentLocation =   await Geolocator.getCurrentPosition().then((value) => value);
-     lat = currentLocation.latitude;
-     long  = currentLocation.longitude;
-    _kGooglePlex = CameraPosition(
-    target: LatLng(lat, long),
-    zoom: 16.4746,
-  );
-  mymarker.add(Marker(markerId:MarkerId("1") , position:LatLng(lat, long),));
-  
-  setState(() {
-    
-  });
-
-  }
-  @override
-  void initState() {
-     postionStream = Geolocator.getPositionStream().listen((Position position) {
-
-        changemarker(position.latitude, position.longitude);
-      }); 
-    getPermetion();
-    getlangAndlat();
-    super.initState();
-  }
-  
-  late GoogleMapController googleMapController;
-
-Set<Marker> mymarker = {
-
-} ; 
-
-changemarker (newlat , newlong){
-mymarker.remove(Marker(markerId: MarkerId("1")));
-mymarker.add(Marker(markerId: MarkerId("1") , position: LatLng(newlat, newlong)));
-googleMapController.animateCamera(CameraUpdate.newLatLng(LatLng(newlat, newlong)));
-
-setState(() {
-  
-});
-}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Column(
+      body:GetBuilder<TrainLocationControlle>(
+        init: TrainLocationControlle(),
+        builder:((controller) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-         if (_kGooglePlex == null) const CircularProgressIndicator() else SizedBox(
+         if (controller.kGooglePlex == null) const CircularProgressIndicator() else SizedBox(
           child: GoogleMap(
-            markers: mymarker,
+            markers:controller.mymarker,
       mapType: MapType.normal,
-      initialCameraPosition: _kGooglePlex,
-      onMapCreated: (GoogleMapController controller) {
-      googleMapController = controller ; 
+      initialCameraPosition: controller.kGooglePlex!,
+      onMapCreated: (GoogleMapController con) {
+      controller.googleMapController = con ; 
       },
       ),
          height: 500.0,
@@ -115,7 +57,8 @@ setState(() {
         //   }, child:Text("data"))
         ],
       ) 
-    );
+    ) )
+      );
   }
 }
 //AIzaSyBeXTvN6qdamnx6Db947PXxflAbhKPYCck

@@ -1,5 +1,13 @@
 buildscript {
     ext.kotlin_version = '1.6.10'
+    ext {
+        // Update the versions of the Firebase and Google Play services libraries
+        firebaseCoreVersion = '20.0.0'
+        firebaseFirestoreVersion = '24.6.0'
+        googlePlayServicesMapsVersion = '18.1.0'
+        googlePlayServicesLocationVersion = '21.0.1'
+        firebaseDatabaseVersion = '20.2.1'
+    }
     repositories {
         google()
         mavenCentral()
@@ -8,6 +16,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:7.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.3.15'
     }
 }
 

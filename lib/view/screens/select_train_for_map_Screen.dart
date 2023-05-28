@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:team/core/constant/app_string.dart';
+import 'package:team/core/route/app_route.dart';
 import 'package:team/view/components/button_app_component.dart';
 import 'package:team/view/components/drop_mnue_item_component.dart';
 import 'package:team/view/components/drop_mnue_number_component.dart';
@@ -41,7 +42,7 @@ class SelectTrainForMapScreen extends StatelessWidget {
            const DropMnueItemComponent(),
            const DropMnueNumberComponent(),
             ButtonAppComponent(onpressed: (){
-            Get.to(const TrainLocation());
+            Get.toNamed(AppRoute.trainLocationScreen);
            },),
            ],
                 ),

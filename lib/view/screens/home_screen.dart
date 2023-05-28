@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:team/controller/select_train_controller.dart';
 import 'package:team/core/constant/app_string.dart';
 import 'package:team/core/constant/link_photo.dart';
+import 'package:team/core/route/app_route.dart';
 import 'package:team/view/components/appbar_component.dart';
 import 'package:team/view/components/button_app_component.dart';
 import 'package:team/view/screens/menu_screen.dart';
@@ -32,25 +33,17 @@ class HomeScreen extends StatelessWidget {
           style:TextStyle(color: Colors.black) ,
           ),
           actions: [
-          const Center(
-            child: Text(AppString.nameProfile , 
-            style: TextStyle(color: Colors.black ,
-            fontSize: 20.0
-            ),
-            ),
-          ),
-          const SizedBox(width: 5.0),
-            Container(
-              height: 20.0,
-              width: 60.0,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(50.0),),
-                color: Colors.white,
-              ),
-              child:const CircleAvatar(
-                      radius:40 ,
-                      backgroundImage:AssetImage(AppLinkImage.profileImage)  ,
-                     ),
+            InkWell(
+              onTap: () => Get.toNamed(AppRoute.profileScreen),
+              child: Container(
+                height: 20.0,
+                width: 60.0,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(50.0),),
+                  color: Colors.white),
+                child:const CircleAvatar(
+                        radius:40 ,
+                        backgroundImage:AssetImage(AppLinkImage.profileImage)))
             ),
           ],
       elevation: 0.0,
